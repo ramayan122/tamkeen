@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>العمل التطوعي في مدرستنا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Tajawal:wght@800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0e1f38;
+    --navy-2:#173458;
+    --cream:#fbf7ef;
+    --sand:#f3ead8;
+    --gold:#c9a15a;
+    --gold-deep:#a37c34;
+    --teal:#2b8c84;
+    --ink:#1a2433;
+    --muted:#5d6878;
+    --radius:22px;
+    --shadow:0 18px 50px rgba(14,31,56,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'IBM Plex Sans Arabic','Tajawal',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.9;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img,video{max-width:100%;display:block}
+  .container{width:min(1140px,92%);margin-inline:auto}
+  h1,h2,h3{font-family:'Tajawal',sans-serif;font-weight:800;line-height:1.35}
+
+  /* ---------- Header ---------- */
+  header{position:fixed;top:0;inset-inline:0;z-index:60;transition:.3s}
+  header.solid{background:rgba(14,31,56,.92);backdrop-filter:blur(10px);box-shadow:0 6px 24px rgba(0,0,0,.2)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0;gap:14px}
+  .brand{color:#fff;font-weight:700;font-size:1.1rem;display:flex;align-items:center;gap:10px}
+  .brand i{width:12px;height:12px;background:var(--gold);transform:rotate(45deg);display:inline-block;border-radius:2px}
+  nav ul{list-style:none;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+  nav ul::-webkit-scrollbar{display:none}
+  nav a{color:#dfe6f0;font-size:.95rem;padding:6px 14px;border-radius:999px;transition:.2s;white-space:nowrap}
+  nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+  nav a.cta-link{background:var(--gold);color:#241a07;font-weight:600}
+  nav a.cta-link:hover{background:#d8b270}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;
+    background:
+      radial-gradient(900px 500px at 85% 10%,rgba(201,161,90,.28),transparent 60%),
+      radial-gradient(700px 500px at 5% 95%,rgba(43,140,132,.35),transparent 60%),
+      linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%);
+    overflow:hidden;padding:130px 0 90px;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;opacity:.09;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 4l9 21 21-9-9 21 21 9-21 9 9 21-21-9-9 21-9-21-21 9 9-21-21-9 21-9-9-21 21 9z' fill='none' stroke='%23ffffff' stroke-width='1.2'/%3E%3C/svg%3E");
+    background-size:80px 80px;
+  }
+  .hero .container{position:relative;text-align:center}
+  .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(201,161,90,.6);color:var(--gold);padding:6px 18px;border-radius:999px;font-size:.9rem;margin-bottom:22px;background:rgba(201,161,90,.08)}
+  .hero h1{font-size:clamp(2.4rem,6.5vw,4.6rem);margin-bottom:18px}
+  .hero h1 span{background:linear-gradient(90deg,#f1d79a,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{max-width:640px;margin:0 auto 34px;font-size:1.15rem;color:#d3dcea;font-weight:300}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:999px;font-weight:600;font-family:inherit;font-size:1rem;cursor:pointer;border:2px solid transparent;transition:.25s}
+  .btn-gold{background:var(--gold);color:#241a07}
+  .btn-gold:hover{background:#dbb574;transform:translateY(-3px);box-shadow:0 12px 28px rgba(201,161,90,.4)}
+  .btn-ghost{border-color:rgba(255,255,255,.4);color:#fff;margin-inline-start:10px}
+  .btn-ghost:hover{background:rgba(255,255,255,.12)}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-navy:hover{background:var(--navy-2);transform:translateY(-3px);box-shadow:0 12px 28px rgba(14,31,56,.3)}
+
+  .countdown{margin:56px auto 0;display:inline-block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius);padding:20px 28px;backdrop-filter:blur(6px)}
+  .countdown h4{font-weight:500;font-size:.95rem;color:#cdd7e6;margin-bottom:10px}
+  .cd-row{display:flex;gap:14px;justify-content:center;direction:rtl}
+  .cd{min-width:70px}
+  .cd b{display:block;font-family:'Tajawal';font-size:2.2rem;color:var(--gold);line-height:1.1}
+  .cd span{font-size:.8rem;color:#b9c5d8}
+  .cd-today{font-family:'Tajawal';font-size:1.6rem;color:var(--gold)}
+
+  /* ---------- Sections ---------- */
+  section{padding:96px 0}
+  .eyebrow{color:var(--gold-deep);font-weight:600;letter-spacing:.5px;font-size:.95rem;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:34px;height:2px;background:var(--gold)}
+  .center{text-align:center}
+  .center .eyebrow{justify-content:center}
+  .section-head{margin-bottom:56px}
+  .section-head h2{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--navy)}
+  .section-head p{color:var(--muted);max-width:620px;margin-top:10px}
+  .center.section-head p{margin-inline:auto}
+
+  /* ---------- Features (videos) ---------- */
+  .feature{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;margin-bottom:90px}
+  .feature:last-child{margin-bottom:0}
+  .feature.rev .media{order:-1}
+  .feature h3{font-size:clamp(1.6rem,3.2vw,2.2rem);color:var(--navy);margin-bottom:14px}
+  .feature p{color:var(--muted);font-size:1.05rem;margin-bottom:18px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:#fff;border:1px solid #e8dfc9;color:var(--navy);padding:7px 18px;border-radius:999px;font-weight:500;font-size:.95rem;display:inline-flex;align-items:center;gap:8px}
+  .chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
+  .media{display:flex;justify-content:center}
+  .phone{
+    position:relative;width:min(300px,78vw);aspect-ratio:9/16;border-radius:34px;background:#000;
+    border:9px solid var(--navy);box-shadow:var(--shadow),0 0 0 2px var(--gold);overflow:hidden;
+  }
+  .phone video{width:100%;height:100%;object-fit:cover;background:#000}
+  .media::before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(201,161,90,.28),transparent 70%);z-index:0}
+  .media{position:relative}
+  .phone{z-index:1}
+
+  /* ---------- Volunteer day ---------- */
+  .vday-wrap{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+  .vday-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 400px at 90% 0,rgba(201,161,90,.22),transparent 60%)}
+  .vday-wrap .container{position:relative}
+  .vday-wrap h2{color:#fff}
+  .vday-wrap .section-head p{color:#cdd7e6}
+  .days{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:760px;margin:0 auto}
+  .day{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:34px 26px;text-align:center;transition:.3s}
+  .day:hover{transform:translateY(-6px);background:rgba(255,255,255,.1)}
+  .day .num{font-family:'Tajawal';font-size:3.6rem;color:var(--gold);line-height:1}
+  .day .mon{font-size:1.1rem;color:#fff;margin-bottom:10px}
+  .day p{color:#cdd7e6;font-size:.98rem}
+  .vday-wrap .note{text-align:center;max-width:640px;margin:36px auto 0;color:#cdd7e6}
+
+  /* ---------- Gallery ---------- */
+  .gal-group{margin-bottom:60px}
+  .gal-group:last-child{margin-bottom:0}
+  .gal-group h3{font-size:1.5rem;color:var(--navy);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+  .gal-group h3::after{content:"";flex:1;height:1px;background:#e3d8bf}
+  .gal{columns:3 260px;column-gap:22px}
+  .gal figure{break-inside:avoid;margin-bottom:22px;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 8px 26px rgba(14,31,56,.1);cursor:zoom-in;transition:.3s;position:relative;border:1px solid #efe6d2}
+  .gal figure:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(14,31,56,.18)}
+  .gal img{width:100%;height:auto;display:block}
+  .gal figcaption{padding:12px 16px;font-weight:500;color:var(--navy);font-size:.95rem;border-top:1px solid #f0e8d6;display:flex;justify-content:space-between;align-items:center}
+  .gal figcaption small{color:var(--gold-deep)}
+  .gal figure.missing{display:none}
+
+  /* Lightbox */
+  .lb{position:fixed;inset:0;background:rgba(6,14,28,.92);display:none;align-items:center;justify-content:center;z-index:100;padding:30px;cursor:zoom-out}
+  .lb.open{display:flex}
+  .lb img{max-height:88vh;max-width:92vw;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5);background:#fff}
+  .lb button{position:absolute;top:18px;left:22px;background:none;border:none;color:#fff;font-size:2.4rem;cursor:pointer}
+
+  /* ---------- Register ---------- */
+  .register{background:var(--sand)}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;counter-reset:s;position:relative}
+  .step{background:#fff;border-radius:var(--radius);padding:38px 22px 26px;text-align:center;box-shadow:0 10px 30px rgba(14,31,56,.08);position:relative;transition:.3s}
+  .step:hover{transform:translateY(-6px)}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;top:-22px;right:50%;transform:translateX(50%);width:46px;height:46px;border-radius:50%;background:var(--navy);color:var(--gold);font-family:'Tajawal';font-size:1.3rem;display:flex;align-items:center;justify-content:center;border:4px solid var(--sand)}
+  .step h4{color:var(--navy);margin-bottom:6px;font-size:1.1rem}
+  .step p{color:var(--muted);font-size:.93rem;line-height:1.7}
+  .reg-cta{text-align:center;margin-top:52px}
+  .reg-cta small{display:block;margin-top:14px;color:var(--muted)}
+
+  footer{background:var(--navy);color:#b9c5d8;text-align:center;padding:34px 0;font-size:.95rem}
+  footer b{color:var(--gold)}
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:820px){
+    .feature{grid-template-columns:1fr;gap:34px;margin-bottom:70px;text-align:center}
+    .feature.rev .media{order:0}
+    .chips{justify-content:center}
+    .eyebrow{justify-content:center}
+    section{padding:70px 0}
+    .brand span{display:none}
+    .btn-ghost{margin:12px 0 0}
+  }
+  @media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="container nav">
+    <a href="#top" class="brand"><i></i><span>التطوع في مدرستنا</span></a>
+    <nav>
+      <ul>
+        <li><a href="#initiatives">المبادرات</a></li>
+        <li><a href="#volunteer-day">يوم التطوع</a></li>
+        <li><a href="#achievements">الإنجازات</a></li>
+        <li><a href="#register" class="cta-link">سجّل الآن</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== Hero ===== -->
+  <div class="hero">
+    <div class="container">
+      <div class="badge">✦ مبادرات مدرستنا التطوعية</div>
+      <h1>عطاؤنا <span>أثرٌ يبقى</span></h1>
+      <p class="lead">نشارك في المبادرات التطوعية لخدمة ضيوف الرحمن والمجتمع، ونفخر بكل لحظة عطاء قدّمناها. كن جزءًا من الرحلة.</p>
+      <a href="#register" class="btn btn-gold">سجّل كمتطوع</a>
+      <a href="#initiatives" class="btn btn-ghost">شاهد مبادراتنا</a>
+
+      <div class="countdown">
+        <h4 id="cd-title">يوم التطوع السعودي والعالمي بعد</h4>
+        <div class="cd-row" id="cd-row">
+          <div class="cd"><b id="cd-d">0</b><span>يوم</span></div>
+          <div class="cd"><b id="cd-h">0</b><span>ساعة</span></div>
+          <div class="cd"><b id="cd-m">0</b><span>دقيقة</span></div>
+          <div class="cd"><b id="cd-s">0</b><span>ثانية</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Initiatives ===== -->
+  <section id="initiatives">
+    <div class="container">
+      <div class="section-head center reveal">
+        <div class="eyebrow">المبادرات</div>
+        <h2>مبادرات المدرسة</h2>
+        <p>مشاركات ميدانية في موسمي الحج ورمضان لخدمة ضيوف الرحمن والصائمين.</p>
+      </div>
+
+      <!-- Hajj -->
+      <article class="feature reveal">
+        <div>
+          <div class="eyebrow">موسم الحج</div>
+          <h3>مبادرة ساند – الدفاع المدني</h3>
+          <p>شاركت المدرسة في مبادرة «ساند» التابعة للدفاع المدني لخدمة ضيوف الرحمن في موسم الحج، في تجربة ميدانية عزّزت قيم العطاء والمسؤولية.</p>
+          <div class="chips"><span class="chip">خدمة ضيوف الرحمن</span><span class="chip">الدفاع المدني</span><span class="chip">الحج</span></div>
+        </div>
+        <div class="media">
+          <div class="phone">
+            <video controls playsinline preload="metadata">
+              <source src="itms/alhajj.mp4" type="video/mp4">
+              <source src="itms/alhajj.mov" type="video/quicktime">
+              <source src="itms/alhajj.webm" type="video/webm">
+            </video>
+          </div>
+        </div>
+      </article>
+
+      <!-- Ramadan -->
+      <article class="feature rev reveal">
+        <div>
+          <div class="eyebrow">شهر رمضان المبارك</div>
+          <h3>ساند وإفطار صائم في رمضان</h3>
+          <p>وفي شهر رمضان المبارك شاركنا في مبادرة «ساند» لخدمة ضيوف الرحمن، وفي مبادرة «إفطار صائم» لتجهيز وجبات الإفطار وتقديمها للصائمين.</p>
+          <div class="chips"><span class="chip">ساند</span><span class="chip">إفطار صائم</span><span class="chip">رمضان</span></div>
+        </div>
+        <div class="media">
+          <div class="phone">
+            <video controls playsinline preload="metadata">
+              <source src="itms/ramadan.mp4" type="video/mp4">
+              <source src="itms/ramadan.mov" type="video/quicktime">
+              <source src="itms/ramadan.webm" type="video/webm">
+            </video>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== Volunteer Day ===== -->
+  <section id="volunteer-day" class="vday-wrap">
+    <div class="container">
+      <div class="section-head center reveal">
+        <div class="eyebrow">مناسبة سنوية</div>
+        <h2>يوم التطوع السعودي والعالمي</h2>
+        <p>يتوافق يوم التطوع السعودي مع اليوم العالمي للتطوع في الخامس من ديسمبر، وهو مناسبة لتكريم المتطوعين وتشجيع المجتمع على المشاركة في العمل التطوعي.</p>
+      </div>
+      <div class="days reveal">
+        <div class="day"><div class="num">5</div><div class="mon">ديسمبر</div><p>اليوم العالمي للتطوع<br>أقرّته الأمم المتحدة عام 1985</p></div>
+        <div class="day"><div class="num">5</div><div class="mon">ديسمبر</div><p>يوم التطوع السعودي<br>تحتفي به المملكة منذ عام 2020</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Achievements ===== -->
+  <section id="achievements">
+    <div class="container">
+      <div class="section-head center reveal">
+        <div class="eyebrow">الإنجازات</div>
+        <h2>إنجازات المدرسة في المبادرات التطوعية</h2>
+        <p>توثيق مشاركاتنا وشهادات التقدير التي حصلنا عليها. اضغط على أي صورة لتكبيرها.</p>
+      </div>
+
+      <div class="gal-group reveal">
+        <h3>توثيق المشاركات</h3>
+        <div class="gal">
+          <figure><img data-base="itms/1" alt="تقرير توثيق المبادرة" loading="lazy"><figcaption>تقرير توثيق المبادرة</figcaption></figure>
+          <figure><img data-base="itms/2" alt="تقرير المبادرة بالصور" loading="lazy"><figcaption>تقرير المبادرة بالصور</figcaption></figure>
+          <figure><img data-base="itms/3" alt="نموذج المشاركة" loading="lazy"><figcaption>نموذج المشاركة المعتمد</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="gal-group reveal">
+        <h3>شهادات الشكر والتقدير</h3>
+        <div class="gal">
+          <figure><img data-base="itms/4" alt="شهادة شكر وتقدير" loading="lazy"><figcaption>شهادة شكر وتقدير</figcaption></figure>
+          <figure><img data-base="itms/5" alt="شهادة شكر وتقدير" loading="lazy"><figcaption>شهادة شكر وتقدير</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Register ===== -->
+  <section id="register" class="register">
+    <div class="container">
+      <div class="section-head center reveal">
+        <div class="eyebrow">انضم إلينا</div>
+        <h2>كيف تسجّل في منصة العمل التطوعي؟</h2>
+        <p>المنصة الوطنية للعمل التطوعي، التسجيل فيها مجاني وتستغرق الخطوات دقائق معدودة.</p>
+      </div>
+      <div class="steps reveal">
+        <div class="step"><h4>جهّز حسابك</h4><p>تأكد من تفعيل حساب «نفاذ» ووجود بريد إلكتروني فعّال.</p></div>
+        <div class="step"><h4>ادخل المنصة</h4><p>افتح رابط المنصة الوطنية للعمل التطوعي من الزر أدناه.</p></div>
+        <div class="step"><h4>سجّل كمتطوع</h4><p>اضغط «سجّل الآن» ثم اختر «تسجيل كمتطوع».</p></div>
+        <div class="step"><h4>وافق على الميثاق</h4><p>وافق على «ميثاق أخلاقيات المتطوع» لإكمال التسجيل.</p></div>
+        <div class="step"><h4>ابدأ التطوع</h4><p>تصفّح الفرص التطوعية وانضم لما يناسبك، وتُوثَّق ساعاتك في حسابك.</p></div>
+      </div>
+      <div class="reg-cta reveal">
+        <a class="btn btn-navy" href="https://nvg.gov.sa" target="_blank" rel="noopener">الدخول إلى المنصة الوطنية للعمل التطوعي ↗</a>
+        <small>الرابط الرسمي: nvg.gov.sa — تتبع وزارة الموارد البشرية والتنمية الاجتماعية</small>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container"><p>© <span id="y"></span> — موقع المبادرات التطوعية لمدرستنا · <b>معًا نصنع الأثر</b></p></div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lb" id="lb"><button aria-label="إغلاق">×</button><img alt=""></div>
+
+<script>
+  // Header on scroll
+  const hdr=document.getElementById('hdr');
+  const onScroll=()=>hdr.classList.toggle('solid',scrollY>40);
+  onScroll();addEventListener('scroll',onScroll,{passive:true});
+
+  // Reveal on scroll
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Images: يجرب الامتدادات المختلفة تلقائيًا (itms/1 → .jpg .jpeg .png .webp)
+  const EXT=['jpg','jpeg','png','webp','JPG','JPEG','PNG'];
+  document.querySelectorAll('img[data-base]').forEach(img=>{
+    let i=0;const base=img.dataset.base;
+    img.onerror=()=>{i++;if(i<EXT.length){img.src=base+'.'+EXT[i]}else{img.closest('figure').classList.add('missing')}};
+    img.src=base+'.'+EXT[0];
+  });
+
+  // Lightbox
+  const lb=document.getElementById('lb'),lbImg=lb.querySelector('img');
+  document.querySelectorAll('.gal figure').forEach(f=>f.addEventListener('click',()=>{
+    const im=f.querySelector('img');lbImg.src=im.currentSrc||im.src;lb.classList.add('open');
+  }));
+  lb.addEventListener('click',()=>lb.classList.remove('open'));
+  addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
+
+  // Countdown to 5 December (Saudi time)
+  (function(){
+    const now=new Date();
+    let year=now.getFullYear();
+    let target=new Date(year+'-12-05T00:00:00+03:00');
+    const endOfDay=new Date(year+'-12-06T00:00:00+03:00');
+    if(now>=endOfDay){year++;target=new Date(year+'-12-05T00:00:00+03:00')}
+    const d=document.getElementById('cd-d'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
+    function tick(){
+      const diff=target-new Date();
+      if(diff<=0){
+        document.getElementById('cd-title').textContent='';
+        document.getElementById('cd-row').innerHTML='<div class="cd-today">🎉 اليوم يوم التطوع السعودي والعالمي</div>';
+        return;
+      }
+      d.textContent=Math.floor(diff/864e5);
+      h.textContent=Math.floor(diff%864e5/36e5);
+      m.textContent=Math.floor(diff%36e5/6e4);
+      s.textContent=Math.floor(diff%6e4/1e3);
+    }
+    tick();setInterval(tick,1000);
+  })();
+
+  document.getElementById('y').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
